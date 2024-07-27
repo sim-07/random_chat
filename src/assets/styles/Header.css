@@ -1,0 +1,30 @@
+@import './fonts.css';
+
+header {
+    padding: 20px;
+    color: white;
+    text-align: left;
+    font-family: 'Exo', sans-serif;
+}
+
+header img {
+    width: 200px;
+    height: auto;
+}
+
+header a {
+    text-decoration: none;
+    margin: 10px;
+    font-size: 20px;
+    color: white;
+}
+
+.menuContainer {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+}
