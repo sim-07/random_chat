@@ -1,0 +1,81 @@
+.heroSection {
+    /* background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; */
+    height: 510px;
+    position: relative;
+    top: -80px;
+    left: 0;
+    width: 100%;
+}
+
+.slogan {
+    width: 90%;
+    color: white;
+    background: rgba(37, 37, 37, 0.5);
+    /*backdrop-filter: blur(10px);*/
+    margin-top: 180px;
+    margin-left: auto;
+    font-size: 25px;
+    padding-left: 9px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 70px;
+}
+
+.sloganText {
+    margin-left: -40px;
+    margin-right: 50px;
+}
+
+.heroSection button {
+    padding: 15px;
+    background-color: rgb(152, 255, 152);
+    border: none;
+    text-decoration: none;
+    border-radius: 33px;
+    font-size: 25px;
+    color: #2b2b2b;
+    position: relative;
+    cursor: pointer;
+    left: 0px;
+    display: block;
+    width: 180px;
+    text-align: center;
+    top: 80px;
+}
+
+.heroSection h1 {
+    max-width: 400px;
+    white-space: nowrap;
+}
+
+.sottotitoli {
+    font-size: 20px;
+    position: absolute;
+    top: 160px;
+    max-width: 490px;
+}
+
+@media screen and (max-width: 1140px) {
+    .slogan {
+        margin-left: 60px;
+        width: 900px;
+    }
+
+
+}
+
+@media screen and (max-width: 850px) {
+    .slogan {
+        flex-direction: column;
+        width: 90%;
+        margin-left: auto;
+        margin-top: 110px;
+    }
+
+    
+}
