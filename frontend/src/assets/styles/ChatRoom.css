@@ -1,0 +1,25 @@
+.loader {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 110px;
+    padding: 96px 15px 15px 170px;
+    backdrop-filter: blur(3px);
+    width: 370px;
+    height: 430px;
+}
+
+.waitingMessage {
+    position: absolute;
+    left: 50%;
+    top: 310px;
+    transform: translateX(-50%);
+}
+
+.errorMessage {
+    position: relative !important;
+}
+
+.hide {
+    display: none;
+}

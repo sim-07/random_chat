@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../assets/styles/Page404.css';
-import { Link } from 'react-router-dom';
 
 export function Page404() {
 

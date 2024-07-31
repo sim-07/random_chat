@@ -1,0 +1,7 @@
+.livingRoom {
+    width: 1400px;
+    /*left: 50%;*/
+    top: -40px;
+    position: absolute;
+    /*transform: translateX(-50%);*/
+}

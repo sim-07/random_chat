@@ -2,18 +2,15 @@ import React, { useEffect } from 'react';
 import {
     createBrowserRouter,
     RouterProvider,
-    useLocation,
-    Link,
 } from "react-router-dom";
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Page404 from './pages/Page404';
-import Chatroom from './pages/Chatroom';
+import ChatRoom from './pages/ChatRoom';
 
 const router = createBrowserRouter([
     {
         path: "/",
-        /*element: <Root />,*/
         errorElement: <Page404 />,
         children: [
             {
@@ -25,8 +22,8 @@ const router = createBrowserRouter([
                 element: <Contact />
             },
             {
-                path: "/chatroom",
-                element: <Chatroom />
+                path: "/ChatRoom",
+                element: <ChatRoom />
             },
         ],
     },
