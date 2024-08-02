@@ -7,17 +7,33 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const findAvailableUsers = async () => {
-    const { data, error } = await supabase
+const findAvailableUsers = async (userId) => {
+    const { data: pairedData, error: pairedError } = await supabase
         .from('users')
-        .select('*')
-        .eq("available", true)
+        .select('available')
+        .eq('user_id', userId);
 
-    if (error) {
-        throw new Error(`Errore nel trovare gli utenti: ${error.message}`);
+    if (pairedError) {
+        return res.status(500).json({ error: pairedError.message });
     }
 
-    return data;
+    const isAlreadyPaired = pairedData && pairedData.length > 0 && !pairedData[0].available;
+
+    if (!isAlreadyPaired) {
+        const { data, error } = await supabase
+            .from('users')
+            .select('*')
+            .eq("available", true)
+
+        if (error) {
+            throw new Error(`Errore nel trovare gli utenti: ${error.message}`);
+        }
+
+        return data;
+    } else {
+        return false
+    }
+
 };
 
 module.exports = findAvailableUsers;
