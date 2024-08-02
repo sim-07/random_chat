@@ -5,11 +5,12 @@ function Icon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="100%"
+      width="1826"
+      height="883"
       x="0"
       y="0"
       version="1.1"
-      viewBox="0 0 1647 883"
+      viewBox="0 0 1826 883"
       xmlSpace="preserve"
       className="livingRoom"
     >
@@ -19,12 +20,12 @@ function Icon() {
         stroke="none"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="12.9"
-        d="M-2.828 -2.828H1651.8020000000001V882.47H-2.828z"
+        strokeWidth="13.566"
+        d="M-2.828 -2.828H1827.164V882.47H-2.828z"
       ></path>
       <rect
-        width="1651"
-        height="210"
+        width="1829.191"
+        height="225.556"
         x="-3"
         y="659"
         fill="#c7916f"
@@ -32,7 +33,7 @@ function Icon() {
         stroke="none"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="13.153"
+        strokeWidth="14.348"
         ry="0"
       ></rect>
       <path
@@ -41,8 +42,8 @@ function Icon() {
         stroke="#dcb28c"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="13.153"
-        d="M-1 848.208h1646"
+        strokeWidth="13.845"
+        d="M-.784 848.208h1823.651"
       ></path>
       <path
         fill="#c7916f"
@@ -50,8 +51,8 @@ function Icon() {
         stroke="#dcb28c"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="13.153"
-        d="M-1 816.598h1646"
+        strokeWidth="13.845"
+        d="M-.784 816.598h1823.651"
       ></path>
       <path
         fill="#c7916f"
@@ -59,8 +60,8 @@ function Icon() {
         stroke="#dcb28c"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="13.153"
-        d="M-1 784.988h1646"
+        strokeWidth="13.845"
+        d="M-.784 784.988h1823.651"
       ></path>
       <path
         fill="#c7916f"
@@ -68,8 +69,8 @@ function Icon() {
         stroke="#dcb28c"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="13.153"
-        d="M-1 753.379h1646"
+        strokeWidth="13.845"
+        d="M-.784 753.379h1823.651"
       ></path>
       <path
         fill="#c7916f"
@@ -77,15 +78,15 @@ function Icon() {
         stroke="#dcb28c"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="13.153"
-        d="M-1 721.769h1646"
+        strokeWidth="13.845"
+        d="M-.784 721.769h1823.651"
       ></path>
       <g
         fillOpacity="1"
         stroke="none"
         strokeDasharray="none"
         strokeOpacity="1"
-        transform="translate(340.825 -4.243)"
+        transform="matrix(1.26844 0 0 1 91.263 -4.243)"
       >
         <rect
           width="432"
@@ -130,8 +131,8 @@ function Icon() {
         stroke="#dcb28c"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="13.153"
-        d="M-1 690.159h1646"
+        strokeWidth="13.845"
+        d="M-.784 690.159h1823.651"
       ></path>
       <path
         fill="#e56f47"
@@ -815,8 +816,8 @@ function Icon() {
         stroke="none"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="12.9"
-        d="M1189.5 70.5H1650V85H1189.5z"
+        strokeWidth="14.818"
+        d="M1189.5 70.5H1797.078V85H1189.5z"
       ></path>
       <g
         fill="#f5a68d"
@@ -1037,8 +1038,8 @@ function Icon() {
         stroke="#dcb28c"
         strokeDasharray="none"
         strokeOpacity="1"
-        strokeWidth="13.172"
-        d="M-3.25 876.208H1647.5"
+        strokeWidth="13.854"
+        d="M-3.25 876.208H1823"
       ></path>
       <path
         fill="#f3a68c"
@@ -1253,6 +1254,17 @@ function Icon() {
         strokeDasharray="none"
         strokeOpacity="1"
         strokeWidth="9.365"
+      ></circle>
+      <circle
+        cx="1787.362"
+        cy="80.5"
+        r="24"
+        fill="#5c4730"
+        fillOpacity="1"
+        stroke="none"
+        strokeDasharray="none"
+        strokeOpacity="1"
+        strokeWidth="12.9"
       ></circle>
     </svg>
   );
