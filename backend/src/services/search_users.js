@@ -22,7 +22,7 @@ const findAvailableUsers = async (userId) => {
     if (!isAlreadyPaired) {
         const { data, error } = await supabase
             .from('users')
-            .select('*')
+            .select('userId')
             .eq("available", true)
 
         if (error) {

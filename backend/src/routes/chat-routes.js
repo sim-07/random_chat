@@ -41,8 +41,9 @@ router.post('/find-available-users', async (req, res) => {
 
 
                 // Controllo se available dell'utente è già stato messo a false dall'altro utente
-                if (availableUsers != false) {
+                if (availableUsers !== false) {
                     if (oldestUser) {
+                        console.log("Metto a false entrambi gli utenti. Utente: " + userId)
                         const { error: updateError } = await supabase
                             .from('users')
                             .update({ available: false })

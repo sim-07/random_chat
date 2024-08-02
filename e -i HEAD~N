@@ -1,0 +1,124 @@
+[33mcommit 2eec3693c4f6f13fc35f31f54438c26cb3a2e4d0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: sim-07 <121951559+sim-07@users.noreply.github.com>
+Date:   Wed Jul 31 11:28:48 2024 +0200
+
+     Changes to be committed:
+            modified:   backend/.env
+            modified:   backend/node_modules/.package-lock.json
+            new file:   backend/node_modules/express-session/HISTORY.md
+            new file:   backend/node_modules/express-session/LICENSE
+            new file:   backend/node_modules/express-session/README.md
+            new file:   backend/node_modules/express-session/index.js
+            new file:   backend/node_modules/express-session/node_modules/cookie-signature/History.md
+            new file:   backend/node_modules/express-session/node_modules/cookie-signature/Readme.md
+            new file:   backend/node_modules/express-session/node_modules/cookie-signature/index.js
+            new file:   backend/node_modules/express-session/node_modules/cookie-signature/package.json
+            new file:   backend/node_modules/express-session/package.json
+            new file:   backend/node_modules/express-session/session/cookie.js
+            new file:   backend/node_modules/express-session/session/memory.js
+            new file:   backend/node_modules/express-session/session/session.js
+            new file:   backend/node_modules/express-session/session/store.js
+            new file:   backend/node_modules/on-headers/HISTORY.md
+            new file:   backend/node_modules/on-headers/LICENSE
+            new file:   backend/node_modules/on-headers/README.md
+            new file:   backend/node_modules/on-headers/index.js
+            new file:   backend/node_modules/on-headers/package.json
+            new file:   backend/node_modules/random-bytes/HISTORY.md
+            new file:   backend/node_modules/random-bytes/LICENSE
+            new file:   backend/node_modules/random-bytes/README.md
+            new file:   backend/node_modules/random-bytes/index.js
+            new file:   backend/node_modules/random-bytes/package.json
+            new file:   backend/node_modules/uid-safe/HISTORY.md
+            new file:   backend/node_modules/uid-safe/LICENSE
+            new file:   backend/node_modules/uid-safe/README.md
+            new file:   backend/node_modules/uid-safe/index.js
+            new file:   backend/node_modules/uid-safe/package.json
+            modified:   backend/package-lock.json
+            modified:   backend/package.json
+            modified:   backend/src/index.js
+            modified:   backend/src/routes/chat.js
+            new file:   backend/src/services/delete_user.js
+            modified:   backend/src/services/save_user.js
+            new file:   backend/src/services/search_users.js
+            modified:   frontend/package-lock.json
+            modified:   frontend/package.json
+            modified:   frontend/src/App.js
+            new file:   frontend/src/assets/images/livingroom.jsx
+            new file:   frontend/src/assets/styles/ChatRoom.css
+            modified:   frontend/src/assets/styles/HeroSection.css
+            new file:   frontend/src/assets/styles/LivingRoom.css
+            modified:   frontend/src/components/Header.jsx
+            modified:   frontend/src/components/HeroSection.jsx
+            modified:   frontend/src/index.css
+            modified:   frontend/src/index.js
+            modified:   frontend/src/pages/Chatroom.jsx
+            modified:   frontend/src/pages/Contact.jsx
+            modified:   frontend/src/pages/Page404.jsx
+
+[33mcommit 856001497cbe1ce55f70e7347c138492e81e689e[m
+Author: sim-07 <121951559+sim-07@users.noreply.github.com>
+Date:   Sun Jul 28 21:46:35 2024 +0200
+
+     On branch master
+     Changes to be committed:
+            new file:   backend/.env
+            new file:   backend/node_modules/.bin/glob
+            new file:   backend/node_modules/.bin/glob.cmd
+            new file:   backend/node_modules/.bin/glob.ps1
+            new file:   backend/node_modules/.bin/mime
+            new file:   backend/node_modules/.bin/mime.cmd
+            new file:   backend/node_modules/.bin/mime.ps1
+            new file:   backend/node_modules/.bin/mkdirp
+            new file:   backend/node_modules/.bin/mkdirp.cmd
+            new file:   backend/node_modules/.bin/mkdirp.ps1
+            new file:   backend/node_modules/.bin/node-which
+            new file:   backend/node_modules/.bin/node-which.cmd
+            new file:   backend/node_modules/.bin/node-which.ps1
+            new file:   backend/node_modules/.bin/rimraf
+            new file:   backend/node_modules/.bin/rimraf.cmd
+            new file:   backend/node_modules/.bin/rimraf.ps1
+            new file:   backend/node_modules/.bin/supabase
+            new file:   backend/node_modules/.bin/supabase.cmd
+            new file:   backend/node_modules/.bin/supabase.ps1
+            new file:   backend/node_modules/.bin/uuid
+            new file:   backend/node_modules/.bin/uuid.cmd
+            new file:   backend/node_modules/.bin/uuid.ps1
+            new file:   backend/node_modules/.package-lock.json
+            new file:   backend/node_modules/@isaacs/cliui/LICENSE.txt
+            new file:   backend/node_modules/@isaacs/cliui/README.md
+            new file:   backend/node_modules/@isaacs/cliui/build/index.cjs
+            new file:   backend/node_modules/@isaacs/cliui/build/index.d.cts
+            new file:   backend/node_modules/@isaacs/cliui/build/lib/index.js
+            new file:   backend/node_modules/@isaacs/cliui/index.mjs
+            new file:   backend/node_modules/@isaacs/cliui/package.json
+            new file:   backend/node_modules/@isaacs/fs-minipass/LICENSE
+            new file:   backend/node_modules/@isaacs/fs-minipass/README.md
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/commonjs/index.d.ts
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/commonjs/index.d.ts.map
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/commonjs/index.js
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/commonjs/index.js.map
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/commonjs/package.json
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/esm/index.d.ts
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/esm/index.d.ts.map
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/esm/index.js
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/esm/index.js.map
+            new file:   backend/node_modules/@isaacs/fs-minipass/dist/esm/package.json
+            new file:   backend/node_modules/@isaacs/fs-minipass/package.json
+            new file:   backend/node_modules/@pkgjs/parseargs/.editorconfig
+            new file:   backend/node_modules/@pkgjs/parseargs/CHANGELOG.md
+            new file:   backend/node_modules/@pkgjs/parseargs/LICENSE
+            new file:   backend/node_modules/@pkgjs/parseargs/README.md
+            new file:   backend/node_modules/@pkgjs/parseargs/examples/is-default-value.js
+            new file:   backend/node_modules/@pkgjs/parseargs/examples/limit-long-syntax.js
+            new file:   backend/node_modules/@pkgjs/parseargs/examples/negate.js
+            new file:   backend/node_modules/@pkgjs/parseargs/examples/no-repeated-options.js
+            new file:   backend/node_modules/@pkgjs/parseargs/examples/ordered-options.mjs
+            new file:   backend/node_modules/@pkgjs/parseargs/examples/simple-hard-coded.js
+            new file:   backend/node_modules/@pkgjs/parseargs/index.js
+            new file:   backend/node_modules/@pkgjs/parseargs/internal/errors.js
+            new file:   backend/node_modules/@pkgjs/parseargs/internal/primordials.js
+            new file:   backend/node_modules/@pkgjs/parseargs/internal/util.js
+            new file:   backend/node_modules/@pkgjs/parseargs/internal/validators.js
+            new file:   backend/node_modules/@pkgjs/parseargs/package.json
+            new file:   backend/node_modules/@pkgjs/parseargs/utils.js
+            new file:   backend/node_modules/@sup
