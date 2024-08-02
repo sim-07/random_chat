@@ -28,6 +28,14 @@ const findAvailableUsers = async (userId) => {
         if (error) {
             throw new Error(`Errore nel trovare gli utenti: ${error.message}`);
         }
+        if (error) {
+            throw new Error(`Errore nel trovare gli utenti: ${error.message}`);
+        }
+
+        return data;
+    } else {
+        return false
+    }
 
         return data;
     } else {
