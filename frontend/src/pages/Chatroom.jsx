@@ -20,9 +20,9 @@ function ChatRoom() {
                 const response = await axios.post('http://localhost:3001/api/save-user', {}, {
                     withCredentials: true
                 });
-                console.log(`User saved with userId: ${response.data.id}`);
-                sessionStorage.setItem('userId', response.data.id);
-                return response.data.id;
+                console.log(`User saved with userId: ${response.data.userId}`);
+                sessionStorage.setItem('userId', response.data.userId);
+                return response.data.userId;
             } catch (error) {
                 console.error('Error: ', error);
                 setErrorMessage(error.response?.data?.error || 'An error occurred while saving the user.');
@@ -31,11 +31,13 @@ function ChatRoom() {
             }
         };
 
-        const findAvailableUsers = async (userId) => {
+        const createChatroom = async (userId) => {
             try {
-                const response = await axios.post('http://localhost:3001/api/find-available-users', { userId }, {
+                const response = await axios.post('http://localhost:3001/api/create-chatroom', { userId }, {
                     withCredentials: true
                 });
+                console.log("Entrato in chatId: " + response.data.chatId);
+                sessionStorage.setItem('chatId', response.data.chatId);
                 setLoading(false);
             } catch (error) {
                 console.error('Error: ', error);
@@ -47,11 +49,13 @@ function ChatRoom() {
         // Chiamo le funzioni
         const startChatProcess = async () => {
             let userId = sessionStorage.getItem('userId');
+            console.log(`Retrieved userId from sessionStorage: ${userId}`);
             if (!userId) {
                 userId = await saveUser();
             }
             if (userId) {
-                await findAvailableUsers(userId);
+                console.log("createChatroom")
+                await createChatroom(userId);
             }
         };
 
@@ -60,12 +64,14 @@ function ChatRoom() {
         const deleteUser = async () => {
             try {
                 const userId = sessionStorage.getItem('userId');
+                const chatId = sessionStorage.getItem('chatId');
+                console.log("chatId: " + chatId)
                 if (userId) {
-                    await axios.post('http://localhost:3001/api/delete-user', { userId }, {
+                    await axios.post('http://localhost:3001/api/delete-user', { userId, chatId }, {
                         withCredentials: true
                     });
+                    sessionStorage.clear()
                     console.log('User deleted');
-                    sessionStorage.removeItem('userId');
                 }
             } catch (error) {
                 console.error('Error deleting user: ', error);

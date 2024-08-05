@@ -5,7 +5,7 @@ async function saveUser() {
     const userId = uuidv4();
     const { data, error } = await supabase
         .from('users')
-        .insert([{ user_id: userId, available: true }]);
+        .insert([{ user_id: userId }]);
 
     if (error) {
         throw new Error(error.message);

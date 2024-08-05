@@ -8,31 +8,18 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const findAvailableUsers = async (userId) => {
     try {
-        const { data: pairedData, error: pairedError } = await supabase
+
+        const { data, error } = await supabase
             .from('users')
-            .select('available')
-            .eq('user_id', userId);
+            .select('user_id')
+            .is('paired_with', null);
 
-        if (pairedError) {
-            throw new Error(pairedError.message);
+        if (error) {
+            throw new Error(`Errore nel trovare gli utenti: ${error.message}`);
         }
 
-        const isAlreadyPaired = pairedData && pairedData.length > 0 && !pairedData[0].available;
+        return data;
 
-        if (!isAlreadyPaired) {
-            const { data, error } = await supabase
-                .from('users')
-                .select('user_id')
-                .eq('available', true);
-
-            if (error) {
-                throw new Error(`Errore nel trovare gli utenti: ${error.message}`);
-            }
-
-            return data;
-        } else {
-            return false;
-        }
     } catch (error) {
         throw new Error(`Errore nel trovare gli utenti: ${error.message}`);
     }
