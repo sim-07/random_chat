@@ -1,18 +1,20 @@
-const { v4: uuidv4 } = require('uuid');
-const supabase = require('../config/supabaseClient');
+// const { v4: uuidv4 } = require('uuid');
+// const supabase = require('../config/supabaseClient');
 
-async function createChatroom(partecipants) {
-    const chatId = uuidv4();
-    const { data, error } = await supabase
-        .from('chatroom')
-        .insert([{ chat_id: chatId, partecipants }]);
+// async function createChatroom(partecipants) {
+//     const chatId = uuidv4();
 
-    if (error) {
-        console.error("Error creating chatroom:", error.message);
-        throw new Error(error.message);
-    }
+//     // Aggiorna tutti i partecipanti con il nuovo chatroom_id
+//     const { data, error } = await supabase
+//         .from('users')
+//         .update({ chat_id: chatId })
+//         .in('user_id', partecipants);
 
-    return chatId;
-}
+//     if (error) {
+//         throw new Error(`Errore nel creare chat id: ${error.message}`);
+//     }
 
-module.exports = createChatroom;
+//     return chatId;
+// }
+
+// module.exports = createChatroom;

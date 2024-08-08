@@ -7,10 +7,12 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Page404 from './pages/Page404';
 import ChatRoom from './pages/ChatRoom';
+import { SocketProvider } from './Socket';
 
 const router = createBrowserRouter([
     {
         path: "/",
+        //element: <Root />,
         errorElement: <Page404 />,
         children: [
             {
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
                 element: <Contact />
             },
             {
-                path: "/ChatRoom",
+                path: "/chatroom",
                 element: <ChatRoom />
             },
         ],
@@ -34,9 +36,10 @@ const App = () => {
         document.title = "RandomChat";
     }, []);
     return (
-        <div>
+        <SocketProvider>
             <RouterProvider router={router} />
-        </div>
+        </SocketProvider>
+        
     );
 };
 

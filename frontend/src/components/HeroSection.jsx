@@ -7,7 +7,7 @@ const HeroSection = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/ChatRoom');
+        navigate('/chatroom');
     };
 
     return (

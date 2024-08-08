@@ -3,17 +3,16 @@ const session = require('express-session');
 const cors = require('cors');
 const chatRoutes = require('./routes/chat-routes');
 const http = require('http');
-const socketIo = require('socket.io');
+const { setupSocket, getIo } = require('./socket');
 
 const app = express();
 
-// Configura cors per permettere richieste dal frontend
+// Cors per permettere richieste dal frontend
 app.use(cors({
-    origin: 'http://localhost:3000', // URL del tuo frontend
+    origin: 'http://localhost:3000', // Usa l'URL del frontend durante lo sviluppo
     credentials: true // Permetti l'invio dei cookie di sessione
 }));
 
-// Configura express-session
 app.use(session({
     secret: '8b081daef841cce1682089b85d4f66ae4ee628cc80dee55c5b74ebfa17689b7468cc61d4b6977d7874da4d239c7629f1a5115cc25c0006e1fdb7b1470dd18407',
     resave: false, // Non salvare la sessione se non è stata modificata
@@ -29,27 +28,27 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Usa le route per la chat
+
+app.use((req, res, next) => {
+    req.io = getIo();
+    next();
+});
+
 app.use('/api', chatRoutes);
 
 // Crea il server HTTP
 const server = http.createServer(app);
 
-// Crea il server Socket.io passando il server HTTP
-const io = socketIo(server);
-
-io.on('connection', (socket) => {
-    /*console.log('A user connected');
-
-    socket.on('message', (message) => {
-        console.log('Received:', message);
-        socket.send(message); 
-    });
-
-    socket.on('disconnect', () => {
-        console.log('User disconnected');
-    });*/
+// Configura Socket.io con CORS
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 });
+
+setupSocket(io);
 
 // Avvia il server
 const port = 3001;

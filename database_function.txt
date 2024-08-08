@@ -1,0 +1,39 @@
+BEGIN
+    -- Blocco e verifica dell'utente 1
+    PERFORM 1 FROM users
+    WHERE user_id = user_id1 AND paired_with IS NULL
+    FOR UPDATE;
+
+    -- Blocco e verifica dell'utente 2
+    PERFORM 1 FROM users
+    WHERE user_id = user_id2 AND paired_with IS NULL
+    FOR UPDATE;
+
+    -- Verifica che entrambi gli utenti siano ancora disponibili
+    IF EXISTS (
+        SELECT 1 FROM users
+        WHERE user_id = user_id1 AND paired_with IS NULL
+    ) AND EXISTS (
+        SELECT 1 FROM users
+        WHERE user_id = user_id2 AND paired_with IS NULL
+    ) THEN
+        -- Aggiornamento dell'accoppiamento
+        UPDATE users
+        SET paired_with = user_id2, chatroom_id = chat_id
+        WHERE user_id = user_id1 AND paired_with IS NULL;
+
+        UPDATE users
+        SET paired_with = user_id1, chatroom_id = chat_id
+        WHERE user_id = user_id2 AND paired_with IS NULL;
+        
+    ELSE
+        -- Se uno degli utenti non è disponibile, segnala l'errore
+        RAISE NOTICE 'One or both users are no longer available for pairing.';
+    END IF;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Gestione degli errori generali
+        RAISE NOTICE 'An error occurred during the pairing process.';
+        RETURN;
+END;
