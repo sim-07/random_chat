@@ -20,6 +20,21 @@
     position: relative !important;
 }
 
+.circleSkip {
+    height: 50px;
+    width: 50px;
+    border-radius: 30px;
+    background-color: #2d2d2d;
+    z-index: 1;
+    right: 15px;
+    top: 20px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+}
+
 .hide {
     display: none !important;
 }

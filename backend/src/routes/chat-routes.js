@@ -44,10 +44,9 @@ router.post('/create-chatroom', async (req, res) => {
 
                 const { userData, errorUserCheck } = await supabase
                     .from('users')
-                    .select('paired_with')
+                    .select('paired_with, chat_id')
                     .eq('user_id', userId)
                     .single();
-
 
                 if (errorUserCheck) {
                     throw new Error(`Errore nel trovare gli utenti: ${error.message}`);
@@ -56,7 +55,7 @@ router.post('/create-chatroom', async (req, res) => {
                 if (userData && userData.paired_with !== null) {
                     console.log(userId + "è già stato appaiato");
                     chatPartecipants.push(userId, userData.userId);
-                    return res.status(200).json({ availableUsers: chatPartecipants, chatId: chatId });
+                    return res.status(200).json({ availableUsers: chatPartecipants, chatId: userData.chat_id });
                 }
 
                 if (oldestUser) {
@@ -64,8 +63,8 @@ router.post('/create-chatroom', async (req, res) => {
                     const chatId = uuidv4();
 
                     const { data: functionResult, error: functionError } = await supabase
-                        .rpc('match_users'/*'users_match'*/, { user_id1: userId, user_id2: oldestUser, chat_id: chatId });
-                    console.log(userId + "chiama la funzione")
+                        .rpc('match_users', { user_id1: userId, user_id2: oldestUser, chat_id: chatId });
+                    console.log(userId + " chiama la funzione");
 
                     if (functionError) {
                         if (functionError.message.includes('Conflict in updating user pairing')) {
@@ -75,12 +74,38 @@ router.post('/create-chatroom', async (req, res) => {
                         return res.status(500).json({ error: functionError.message });
                     }
 
-                    //console.log(functionResult)
+                    let userDataChat;
+                    let errorUserChat;
+                    const maxAttemptsChatId = 10;
+                    let attempts = 0;
 
-                    req.io.to(userId).emit('joinChat', chatId);
-                    req.io.to(oldestUser).emit('joinChat', chatId);
+                    do {
+                        await new Promise(resolve => setTimeout(resolve, 500));
 
-                    return res.status(200).json({ availableUsers: chatPartecipants, chatId: chatId });
+                        const result = await supabase
+                            .from('users')
+                            .select('chatroom_id')
+                            .eq('user_id', userId)
+                            .single();
+
+                        userDataChat = result.data;
+                        errorUserChat = result.error;
+
+                        attempts++;
+                    } while ((!userDataChat || !userDataChat.chatroom_id) && attempts < maxAttemptsChatId);
+
+                    if (errorUserChat || !userDataChat || !userDataChat.chatroom_id) {
+                        return res.status(500).json({
+                            error: `Errore nel recupero dell'ID della chatroom: ${errorUserChat}. userDataChat: ${JSON.stringify(userDataChat)}. userId ${userId}`
+                        });
+                    }
+
+                    console.log(`Chatroom ID recuperato per l'utente ${userId}: ${userDataChat.chatroom_id}`);
+
+                    req.io.to(userId).emit('joinChat', userDataChat.chatroom_id);
+                    req.io.to(oldestUser).emit('joinChat', userDataChat.chatroom_id);
+
+                    return res.status(200).json({ availableUsers: chatPartecipants, chatId: userDataChat.chatroom_id });
                 }
             }
         }
@@ -90,7 +115,6 @@ router.post('/create-chatroom', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
 
 router.post('/delete-user', async (req, res) => {
     try {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/styles/ChatInput.css';
 
-const ChatInput = ({ onSendMessage }) => {
+const ChatInput = ({ onSendMessage, disabled }) => {
     const [message, setMessage] = useState('');
 
     const handleSend = () => {
@@ -28,6 +28,7 @@ const ChatInput = ({ onSendMessage }) => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyDown={handleKeyDown}
+                    disabled={disabled}
                     placeholder="Scrivi qui..."
                 />
                 <div className='circleInput'></div>

@@ -28,7 +28,7 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+// Middleware per allegare l'istanza di Socket.io alle richieste
 app.use((req, res, next) => {
     req.io = getIo();
     next();
@@ -40,15 +40,7 @@ app.use('/api', chatRoutes);
 const server = http.createServer(app);
 
 // Configura Socket.io con CORS
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-    credentials: true
-  }
-});
-
-setupSocket(io);
+const io = setupSocket(server);
 
 // Avvia il server
 const port = 3001;

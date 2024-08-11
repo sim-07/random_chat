@@ -6,7 +6,6 @@ header {
     text-align: left;
     font-family: 'Exo', sans-serif;
     /*backdrop-filter: blur(2px);*/
-    z-index: 99999;
     position: relative;
 }
 

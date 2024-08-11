@@ -1,17 +1,29 @@
-const { v4: uuidv4 } = require('uuid');
 const supabase = require('../config/supabaseClient');
 
 async function saveUser(socketId) {
-    
-    const { data, error } = await supabase
+    const { data: existingUsers, error: checkError } = await supabase
         .from('users')
-        .insert([{ user_id: socketId }]);
+        .select('*')
+        .eq('user_id', socketId);
 
-    if (error) {
-        throw new Error(error.message);
+    if (checkError) {
+        throw new Error(checkError.message);
     }
 
-    return data;
+    if (socketId && existingUsers && existingUsers.length === 0) {
+        const { data, error } = await supabase
+            .from('users')
+            .insert([{ user_id: socketId }]);
+
+        if (error) {
+            throw new Error(error.message);
+        }
+
+        return data;
+    }
+
+    console.log(`Utente con socketId ${socketId} esiste già, nessun inserimento effettuato.`);
+    return null;
 }
 
 module.exports = saveUser;
