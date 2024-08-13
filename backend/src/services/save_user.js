@@ -22,7 +22,7 @@ async function saveUser(socketId) {
         return data;
     }
 
-    console.log(`Utente con socketId ${socketId} esiste già, nessun inserimento effettuato.`);
+    console.log(`Inserimento utente con socketId ${socketId} non effettuato.`);
     return null;
 }
 

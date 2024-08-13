@@ -9,6 +9,9 @@ const { v4: uuidv4 } = require('uuid');
 router.post('/save-user', async (req, res) => {
     try {
         const { socketId } = req.body;
+        if (!socketId) {
+            return res.status(500).json({ error: 'Socket ID is required' });
+        }
         saveUser(socketId);
         console.log("Salvato utente: " + socketId);
         res.status(200).json({ socketId });

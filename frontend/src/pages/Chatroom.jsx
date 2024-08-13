@@ -18,8 +18,8 @@ function ChatRoom() {
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const [chatId, setChatId] = useState(null);
     const [inputDisabled, setInputDisabled] = useState(false);
+    const [chatId, setChatId] = useState(null);
     const socket = useSocket();
 
     const deleteUser = async () => {
@@ -46,7 +46,7 @@ function ChatRoom() {
                 withCredentials: true
             });
             console.log(`User saved with userId: ${response.data.socketId}`);
-            sessionStorage.setItem('userId', socketId);
+            sessionStorage.setItem('userId', response.data.socketId);
             return socketId;
         } catch (error) {
             console.error('Error: ', error);
@@ -85,10 +85,18 @@ function ChatRoom() {
         }
     };
 
+
     const initChat = () => {
+
         console.log("Socket in ChatRoom:", socket);
         if (socket) {
             console.log("Socket ID:", socket.id);
+            /*if (!socket.connected) {
+                socket.connect();
+            }*/
+        } else {
+            deleteUser();
+            return;
         }
 
         setMessages([]);
@@ -103,8 +111,13 @@ function ChatRoom() {
         }, 500);
 
         return () => {
+            let chatId = sessionStorage.getItem("chatId");
             clearInterval(interval);
-            deleteUser(); // Quando il componente viene smontato elimino l'utente
+            if (socket) {
+                socket.emit('disconnectUser', { chatId });
+            }
+
+            deleteUser();
         };
     };
 
@@ -151,8 +164,9 @@ function ChatRoom() {
     }, [socket, chatId]);
 
     const handleSendMessage = (message) => {
-        if (socket && chatId) {
-            console.log("Mesaggio inviato: " + message);
+        if (socket && chatId && !error) {
+            sessionStorage.setItem("userId", socket.id)
+            console.log(`Mesaggio inviato: ${message}`);
             socket.emit('sendMessage', { chatId, message, self: true });
             setMessages((prevMessages) => [...prevMessages, { text: message, self: true }]);
         }
@@ -199,6 +213,7 @@ function ChatRoom() {
                         <path
                             d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Zm80-240Zm0 90 136-90-136-90v180Z" />
                     </svg>
+                    {/*<p className='tooltip'>Cambia chat</p>*/}
                 </div>
 
                 <Header />
