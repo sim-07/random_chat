@@ -40,8 +40,8 @@ router.post('/create-chatroom', async (req, res) => {
 
                 const oldestUser = availableUsers
                     .filter(user => user.user_id !== userId)
-                    .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
-                    .pop()?.user_id;
+                    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                    .pop()?.user_id; //Prende l'ultimo elemento dell'array ordinato per data
 
                 console.log("oldestUser trovato da " + userId + ":", oldestUser);
 

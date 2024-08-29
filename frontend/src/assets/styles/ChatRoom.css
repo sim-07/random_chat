@@ -37,16 +37,6 @@
     z-index: 999;
 }
 
-.tooltip {
-    visibility: hidden;
-    color: white;
-    margin-top: 30px;
-}
-
-.circleSkip:hover .tooltip {
-    visibility: visible;
-}
-
 .hide {
     display: none !important;
 }
