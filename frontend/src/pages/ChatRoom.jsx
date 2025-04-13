@@ -10,6 +10,8 @@ import ChatInput from '../components/ChatInput';
 import LivingRoom from '../assets/images/livingroom';
 import MessageList from '../components/MessageList';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 axios.defaults.withCredentials = true;
 
 function ChatRoom() {
@@ -28,7 +30,7 @@ function ChatRoom() {
             const chatId = sessionStorage.getItem('chatId');
             console.log("chatId: " + chatId);
             if (userId) {
-                await axios.post('http://localhost:3001/api/delete-user', { userId, chatId }, {
+                await axios.post(`${apiUrl}/api/delete-user`, { userId, chatId }, {
                     withCredentials: true
                 });
                 sessionStorage.clear();
@@ -42,7 +44,7 @@ function ChatRoom() {
     const saveUser = async () => {
         try {
             const socketId = socket.id;
-            const response = await axios.post('http://localhost:3001/api/save-user', { socketId }, {
+            const response = await axios.post(`${apiUrl}/api/save-user`, { socketId }, {
                 withCredentials: true
             });
             console.log(`User saved with userId: ${response.data.socketId}`);
@@ -58,7 +60,7 @@ function ChatRoom() {
 
     const createChatroom = async (userId) => {
         try {
-            const response = await axios.post('http://localhost:3001/api/create-chatroom', { userId }, {
+            const response = await axios.post(`${apiUrl}/api/create-chatroom`, { userId }, {
                 withCredentials: true
             });
             console.log("Entrato in chatId: " + response.data.chatId);
